@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>Leetcode | ClownW的博客</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <link rel="alternate" href="/atom.xml" title="ClownW的博客">
+  <meta name="description" content="1.Two Sum  给定一个列表nums和target，从列表中找到两个元素，它们之和为target。 ​        由于这里需要返回数字在原有数组中的索引，因此不能先对数组进行排序。这里采用hashtable的方法来进行解决，使用一个hashtable来保存数组的值和索引，然后进行遍历，查找某个数和其对应的补是否也在数组中。 方法一：Two-pass Hash Table 1234dct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode">
+<meta property="og:url" content="http://clownw.github.io/Leetcode-1/">
+<meta property="og:site_name" content="ClownW的博客">
+<meta property="og:description" content="1.Two Sum  给定一个列表nums和target，从列表中找到两个元素，它们之和为target。 ​        由于这里需要返回数字在原有数组中的索引，因此不能先对数组进行排序。这里采用hashtable的方法来进行解决，使用一个hashtable来保存数组的值和索引，然后进行遍历，查找某个数和其对应的补是否也在数组中。 方法一：Two-pass Hash Table 1234dct">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://clownw.github.io/Leetcode-1/Leetcode-1/description.png">
+<meta property="og:image" content="http://clownw.github.io/Leetcode-1/Leetcode-1/3Sum.png">
+<meta property="og:image" content="http://clownw.github.io/Leetcode-1/Leetcode-1/4Sum.png">
+<meta property="article:published_time" content="2020-02-05T04:26:44.000Z">
+<meta property="article:modified_time" content="2020-02-10T05:45:48.423Z">
+<meta property="article:author" content="ClownW">
+<meta property="article:tag" content="Leetcode Top Interview Questions">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://clownw.github.io/Leetcode-1/Leetcode-1/description.png">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="">
+  <meta name="keywords" content=",Leetcode Top Interview Questions">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="ClownW的博客">
+  <meta name="msapplication-starturl" content="http://clownw.github.io/Leetcode-1/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ClownW的博客">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  
+    <meta property="article:published_time" content="Wed Feb 05 2020 12:26:44 GMT+0800">
+    <meta property="article:modified_time" content="Mon Feb 10 2020 13:45:48 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="http://clownw.github.io/Leetcode-1/">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">ClownW的博客</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.png" style="height: 160px;">
+    <img src="/images/portrait.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">ClownW</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme" style="justify-content: center;">分类为空</a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/learn/" rel="tag">learn<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com/ClownW" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">My github profile</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-14.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">Leetcode</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-02-05 / <i class="iconfont">&#xe601;</i> ClownW</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=http://clownw.github.io/Leetcode-1/">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=Leetcode&url=http://clownw.github.io/Leetcode-1/&pic=http://clownw.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=Leetcode&url=http://clownw.github.io/Leetcode-1/&via=ClownW" target="_blank" class="mdui-ripple">分享到Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://clownw.github.io/Leetcode-1/" target="_blank" class="mdui-ripple">分享到Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=http://clownw.github.io/Leetcode-1/" target="_blank" class="mdui-ripple">分享到Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://clownw.github.io/Leetcode-1/&title=Leetcode" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=ClownW的博客&title=Leetcode&summary=&pics=http://clownw.github.io/images/favicon.png&url=http://clownw.github.io/Leetcode-1/" target="_blank" class="mdui-ripple">分享到QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=http://clownw.github.io/Leetcode-1/&text=Leetcode" target="_blank" class="mdui-ripple">分享到Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p>1.Two Sum</p>
+<p><img src="./Leetcode-1/description.png" alt=""></p>
+<p>给定一个列表nums和target，从列表中找到两个元素，它们之和为target。</p>
+<p>​        <strong>由于这里需要返回数字在原有数组中的索引，因此不能先对数组进行排序。</strong>这里采用hashtable的方法来进行解决，使用一个hashtable来保存数组的值和索引，然后进行遍历，查找某个数和其对应的补是否也在数组中。</p>
+<p>方法一：Two-pass Hash Table</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dct = &#123;nums[i]:i <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">    <span class="keyword">if</span> dct.get(target-nums[i]) <span class="keyword">and</span> dct[target-nums[i]] != i:</span><br><span class="line">        <span class="keyword">return</span> [i, dct[target-nums[i]]]</span><br></pre></td></tr></table></figure>
+
+<p>方法二：One-pass Hash Table</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dct = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">    complement = target-nums[i]</span><br><span class="line">    <span class="keyword">if</span> dct.get(complement):</span><br><span class="line">        <span class="keyword">return</span> [i, dct[complement]]</span><br><span class="line">    dct[nums[i]] = i</span><br></pre></td></tr></table></figure>
+
+
+<p>相似问题：</p>
+<p>2.Two Sum II</p>
+<p>![](./Leetcode-1/Two Sum II.png)</p>
+<p>这次输入的数组是已经<strong>排好序</strong>的，这样就可以省去建立HashTable的空间。</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(numbers: List[int], target: int)</span> -&gt; List[int]:</span></span><br><span class="line">    l,r = <span class="number">0</span>, len(numbers)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> l&lt;r:</span><br><span class="line">        <span class="keyword">if</span> numbers[l]+numbers[r] == target:</span><br><span class="line">            <span class="keyword">return</span> [l+<span class="number">1</span>, r+<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">elif</span> numbers[l]+numbers[r] &gt; target:</span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+<p>3.Two Sum IV</p>
+<p>![](./Leetcode-1/Two Sum IV.png)</p>
+<p>​        判断一棵BST中是否有两个数，它们之和为k。有则返回True，没有则返回False.        </p>
+<p>​        由于是一棵二叉查找树，因此可以用中序遍历的方式先遍历一次，得到一个递增的数组，再用while循环来进行判断是否存在这样的两个数。</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findTarget</span><span class="params">(root: TreeNode, k: int)</span> -&gt; bool:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">return</span> helper(root.left)+[root.val]+helper(root.right)</span><br><span class="line">    nums = helper(root)</span><br><span class="line">    </span><br><span class="line">    l,r = <span class="number">0</span>,len(nums)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> l&lt;r:</span><br><span class="line">        <span class="keyword">if</span> nums[l]+nums[r]==k:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">elif</span> nums[l]+nums[r]&gt;k:</span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<p>4.3Sum</p>
+<p><img src="./Leetcode-1/3Sum.png" alt=""></p>
+<p>问题延伸：3Sum，找到一个数组中的三个数，它们之和为0。</p>
+<p>这样问题可以分解成，将n个数分别作为target一次，每次有n-1个其他数，分解成n个前面的two sum问题，找到所有的三元组。</p>
+<p>代码：        </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">threeSum</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">    nums = sorted(nums)</span><br><span class="line">    res = set()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        target = nums[i]</span><br><span class="line">        <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">and</span> target == nums[i<span class="number">-1</span>]:</span><br><span class="line">            <span class="keyword">continue</span> </span><br><span class="line">        two_res = self.twoSum(nums[:i]+nums[i+<span class="number">1</span>:], -target)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#由于list是unhashable的，因此需要使用tuple来过渡</span></span><br><span class="line">        <span class="keyword">if</span> two_res != <span class="number">-1</span>:</span><br><span class="line">            <span class="keyword">for</span> item <span class="keyword">in</span> two_res:</span><br><span class="line">                res.add(tuple(sorted([item[<span class="number">0</span>], item[<span class="number">1</span>], target])))</span><br><span class="line">    res = [list(item) <span class="keyword">for</span> item <span class="keyword">in</span> res]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, sorted_nums, target)</span>:</span></span><br><span class="line">    start, end = <span class="number">0</span>, len(sorted_nums)<span class="number">-1</span></span><br><span class="line">    res = set()</span><br><span class="line">    <span class="keyword">while</span> start &lt; end:</span><br><span class="line">        temp = sorted_nums[start]+sorted_nums[end]</span><br><span class="line">        <span class="keyword">if</span> temp == target:</span><br><span class="line">            res.add((sorted_nums[start], sorted_nums[end]))</span><br><span class="line">            start += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> temp &gt;target:</span><br><span class="line">            end -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            start += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> res:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<p>去重部分浪费时间，进行<strong>剪枝</strong>并优化代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">threeSum</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">	res = []</span><br><span class="line">	nums.sort()</span><br><span class="line">	length = len(nums)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> xrange(length<span class="number">-2</span>): <span class="comment">#[8]</span></span><br><span class="line">		<span class="keyword">if</span> nums[i]&gt;<span class="number">0</span>: <span class="keyword">break</span> <span class="comment">#[剪枝]</span></span><br><span class="line">		<span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">and</span> nums[i]==nums[i<span class="number">-1</span>]: <span class="keyword">continue</span> <span class="comment">#[1]</span></span><br><span class="line"></span><br><span class="line">		l, r = i+<span class="number">1</span>, length<span class="number">-1</span> <span class="comment">#[2]</span></span><br><span class="line">		<span class="keyword">while</span> l&lt;r:</span><br><span class="line">			total = nums[i]+nums[l]+nums[r]</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> total&lt;<span class="number">0</span>: <span class="comment">#[3]</span></span><br><span class="line">				l+=<span class="number">1</span></span><br><span class="line">			<span class="keyword">elif</span> total&gt;<span class="number">0</span>: <span class="comment">#[4]</span></span><br><span class="line">				r-=<span class="number">1</span></span><br><span class="line">			<span class="keyword">else</span>: <span class="comment">#[5]</span></span><br><span class="line">				res.append([nums[i], nums[l], nums[r]])</span><br><span class="line">				<span class="keyword">while</span> l&lt;r <span class="keyword">and</span> nums[l]==nums[l+<span class="number">1</span>]: <span class="comment">#[6]</span></span><br><span class="line">					l+=<span class="number">1</span></span><br><span class="line">				<span class="keyword">while</span> l&lt;r <span class="keyword">and</span> nums[r]==nums[r<span class="number">-1</span>]: <span class="comment">#[6]</span></span><br><span class="line">					r-=<span class="number">1</span></span><br><span class="line">				l+=<span class="number">1</span></span><br><span class="line">				r-=<span class="number">1</span></span><br><span class="line">	<span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<p>5.4Sum</p>
+<p><img src="./Leetcode-1/4Sum.png" alt=""></p>
+<p>给定一个数组和一个target，找到数组中的所有不同四元组，它们之和为target。与3Sum类似可以分解成n个2Sum类似，可以分解成n个3Sum问题。复杂度$O(n^3)$，需要进行<strong>剪枝</strong>来去掉一些情况以加速算法。</p>
+<p>例如当：</p>
+<p><code>if 4*nums[0]&gt;target or 4*nums[-1]&lt;target</code></p>
+<p>时，就可以返回一个空列表。在3Sum中类似剪枝。</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fourSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:<span class="keyword">return</span> []</span><br><span class="line">        four_res = []</span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="keyword">if</span> <span class="number">4</span>*nums[<span class="number">0</span>]&gt;target <span class="keyword">or</span> <span class="number">4</span>*nums[<span class="number">-1</span>]&lt;target:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)<span class="number">-3</span>):</span><br><span class="line">            <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i<span class="number">-1</span>]:<span class="keyword">continue</span></span><br><span class="line">            cur_target = target - nums[i]</span><br><span class="line">            three_res = self.threeSum(nums[i+<span class="number">1</span>:], cur_target)</span><br><span class="line">            <span class="keyword">for</span> item <span class="keyword">in</span> three_res:</span><br><span class="line">                four_res.append(item+[nums[i]])</span><br><span class="line">        <span class="keyword">return</span> four_res</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSum</span><span class="params">(self, sorted_nums, target)</span>:</span></span><br><span class="line">        three_res = []</span><br><span class="line">        <span class="keyword">if</span> <span class="number">3</span>*sorted_nums[<span class="number">0</span>]&gt;target <span class="keyword">or</span> <span class="number">3</span>*sorted_nums[<span class="number">-1</span>]&lt;target:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sorted_nums)<span class="number">-2</span>):</span><br><span class="line">            <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">and</span> sorted_nums[i] == sorted_nums[i<span class="number">-1</span>]:<span class="keyword">continue</span></span><br><span class="line">            cur_target = target - sorted_nums[i]</span><br><span class="line">            two_res = self.twoSum(sorted_nums[i+<span class="number">1</span>:], cur_target)</span><br><span class="line">            <span class="keyword">for</span> item <span class="keyword">in</span> two_res:</span><br><span class="line">                three_res.append(item+[sorted_nums[i]])</span><br><span class="line">        <span class="keyword">return</span> three_res</span><br><span class="line">          </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, sorted_nums, target)</span>:</span></span><br><span class="line">        start, end = <span class="number">0</span>, len(sorted_nums)<span class="number">-1</span></span><br><span class="line">        two_res = []</span><br><span class="line">        <span class="keyword">if</span> <span class="number">2</span>*sorted_nums[start]&gt;target <span class="keyword">or</span> <span class="number">2</span>*sorted_nums[end]&lt;target:</span><br><span class="line">            <span class="keyword">return</span> two_res</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> start&lt;end:</span><br><span class="line">            s = sorted_nums[start]+sorted_nums[end]</span><br><span class="line">            <span class="keyword">if</span> s == target:</span><br><span class="line">                two_res.append([sorted_nums[start], sorted_nums[end]])</span><br><span class="line">                start += <span class="number">1</span></span><br><span class="line">                end -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> start&lt;end <span class="keyword">and</span> sorted_nums[start] == sorted_nums[start<span class="number">-1</span>]:</span><br><span class="line">                    start += <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> start&lt;end <span class="keyword">and</span> sorted_nums[end] == sorted_nums[end+<span class="number">1</span>]:</span><br><span class="line">                    end -= <span class="number">1</span>                 </span><br><span class="line">            <span class="keyword">elif</span> s &gt; target:</span><br><span class="line">                end -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                start += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> two_res</span><br></pre></td></tr></table></figure>
+
+
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>本文链接：</strong><a href="http://clownw.github.io/Leetcode-1/">http://clownw.github.io/Leetcode-1/</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/hello-world/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2019 - 2020 ClownW<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>
