@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>贪心算法 | ClownW的博客</title>
+
+  <link rel="shortcut icon" href="../images/favicon.png">
+  <link rel="alternate" href="../atom.xml" title="ClownW的博客">
+  <meta name="description" content="贪心算法两例1.会议安排问题（一） 问题描述：有n个会议集合 A&#x3D;{1,2,3…n},这些会议都使用的是同一个会议室且在同一时间内最多只有一个会议可以使用该会议室，所以需要根据所有会议举办的时间进行协商。目标是尽可能选择更多的会议来使用资源。 给出每一个会议所占用的时间段，表示形式为 $[b_i,e_i)$ , 其中$b_i,e_i$是int型的整数来代表时间。 算法设计，包括策略与数据结构的选择">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贪心算法">
+<meta property="og:url" content="http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
+<meta property="og:site_name" content="ClownW的博客">
+<meta property="og:description" content="贪心算法两例1.会议安排问题（一） 问题描述：有n个会议集合 A&#x3D;{1,2,3…n},这些会议都使用的是同一个会议室且在同一时间内最多只有一个会议可以使用该会议室，所以需要根据所有会议举办的时间进行协商。目标是尽可能选择更多的会议来使用资源。 给出每一个会议所占用的时间段，表示形式为 $[b_i,e_i)$ , 其中$b_i,e_i$是int型的整数来代表时间。 算法设计，包括策略与数据结构的选择">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/1353_descrip.png">
+<meta property="og:image" content="http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/1353_ex.png">
+<meta property="article:published_time" content="2020-02-17T14:37:00.000Z">
+<meta property="article:modified_time" content="2020-02-17T15:15:08.495Z">
+<meta property="article:author" content="ClownW">
+<meta property="article:tag" content="算法学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/1353_descrip.png">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="">
+  <meta name="keywords" content=",算法学习">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="ClownW的博客">
+  <meta name="msapplication-starturl" content="http://clownw.github.io">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ClownW的博客">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="../images/favicon.png">
+
+  
+    <meta property="article:published_time" content="Mon Feb 17 2020 22:37:00 GMT+0800">
+    <meta property="article:modified_time" content="Mon Feb 17 2020 23:15:08 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="http://clownw.github.io">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="../css/mdui.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="../index.html" class="mdui-typo-headline">ClownW的博客</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="../atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="../search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="../images/banner.png" style="height: 160px;">
+    <img src="../images/portrait.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">ClownW</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="../index.html" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../archives/2020/02/">二月 2020<span class="mdui-ripple sidebar_archives-count">6</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/01/">一月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme" style="justify-content: center;">分类为空</a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/learn/" rel="tag">learn<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" rel="tag">算法学习<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="../about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com/ClownW" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">My github profile</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="../https:/cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-13.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">贪心算法</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-02-17 / <i class="iconfont">&#xe601;</i> ClownW</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=贪心算法&url=http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/&pic=http://clownw.github.io../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=贪心算法&url=http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/&via=ClownW" target="_blank" class="mdui-ripple">分享到Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" target="_blank" class="mdui-ripple">分享到Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" target="_blank" class="mdui-ripple">分享到Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/&title=贪心算法" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=ClownW的博客&title=贪心算法&summary=&pics=http://clownw.github.io../images/favicon.png&url=http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" target="_blank" class="mdui-ripple">分享到QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/&text=贪心算法" target="_blank" class="mdui-ripple">分享到Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <h3 id="贪心算法两例"><a href="#贪心算法两例" class="headerlink" title="贪心算法两例"></a>贪心算法两例</h3><p>1.会议安排问题（一）</p>
+<p>问题描述：有n个会议集合 A={1,2,3…n},这些会议都使用的是同一个会议室且在同一时间内最多只有一个会议可以使用该会议室，所以需要根据所有会议举办的时间进行协商。目标是尽可能选择更多的会议来使用资源。</p>
+<p>给出每一个会议所占用的时间段，表示形式为 $[b_i,e_i)$ , 其中$b_i,e_i$是int型的整数来代表时间。</p>
+<p>算法设计，包括策略与数据结构的选择,目前可以选择的贪心策略有：</p>
+<ol>
+<li>选择最早开始时间且不与已安排会议重叠的会议</li>
+<li>选择使用时间最短且不与已安排会议重叠的会议</li>
+<li>选择最早结束时间且不与已安排会议重叠的会议</li>
+</ol>
+<p><strong>三个贪心策略中应该选择第三个，因为在这道题的情景之下，贪心的对象应该转化为使剩余时间的可安排时间段尽可能大，以便之后的会议能够有更多的时间来进行。</strong></p>
+<p>伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;A存储的是成对信息 A[i]代表的是第i个会议</span><br><span class="line">&#x2F;&#x2F;有两个属性，begin开始时间，end结束时间</span><br><span class="line">&#x2F;&#x2F;num代表的是一共有多少个会议</span><br><span class="line">ARRANGE_MEETING(A,num)</span><br><span class="line">    SORT_ASC(A) &#x2F;&#x2F;根据end结束时间进行降序排序，如果end相同，则根据begin来进行排序</span><br><span class="line">    NOW_END &#x3D; A[0].end &#x2F;&#x2F;选择第一个会议</span><br><span class="line">    CNT&#x3D;1 &#x2F;&#x2F;记录选择了几个会议</span><br><span class="line">    for i &#x3D; 1 to num:</span><br><span class="line">        if A[i].begin &gt;&#x3D; NOW_END:</span><br><span class="line">            NOW_END &#x3D; A[i].end</span><br><span class="line">            CNT++</span><br><span class="line">    return CNT;</span><br></pre></td></tr></table></figure>
+
+<p>python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">sav = []</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">answer</span><span class="params">(meetings)</span>:</span></span><br><span class="line">    last_end = <span class="number">-1</span></span><br><span class="line">    ans = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> end,start <span class="keyword">in</span> sorted((end,start) <span class="keyword">for</span> start,end <span class="keyword">in</span> meetings ):</span><br><span class="line">        <span class="keyword">if</span> start &gt;= last_end:</span><br><span class="line">            last_end = end</span><br><span class="line">            ans += <span class="number">1</span></span><br><span class="line">            sav.append([start,end])</span><br><span class="line">    print(<span class="string">"最佳安排会议个数为: %s"</span> % ans)</span><br><span class="line">    print(<span class="string">"以下为被安排的会议:"</span>)</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> sav:</span><br><span class="line">        print(a)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">meetings = [(<span class="number">2</span>,<span class="number">3</span>),(<span class="number">1</span>,<span class="number">5</span>),(<span class="number">4</span>,<span class="number">6</span>),(<span class="number">5</span>,<span class="number">7</span>),(<span class="number">6</span>,<span class="number">9</span>),(<span class="number">9</span>,<span class="number">11</span>)]</span><br><span class="line"></span><br><span class="line">answer(meetings)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.会议安排问题（二）（leetcode #1353）</p>
+<p>问题描述：</p>
+<p><img src="1353_descrip.png" alt=""></p>
+<p><img src="1353_ex.png" alt=""></p>
+<p>和上一题的改变在于可以在$s_i&lt;=d&lt;=e_i$的任意一天d参与这个event，贪心策略不变，排序方法依然按照结束时间的先后来进行排序，细节处理有所不同</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxEvents</span><span class="params">(events)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type events: List[List[int]]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    events.sort(key=<span class="keyword">lambda</span> item: (item[<span class="number">1</span>], item[<span class="number">0</span>]))</span><br><span class="line">    days = set()</span><br><span class="line">    <span class="comment">#越往后的event，越晚结束，因此前一个event一定能在后一个event结束前结束，即来得及参加后一个event（当多个event在同一天结束时不一定做得到）</span></span><br><span class="line">    <span class="keyword">for</span> start, end <span class="keyword">in</span> events:</span><br><span class="line">        <span class="comment">#在si和ei之间的任意一天都可以参加，从start开始遍历</span></span><br><span class="line">        <span class="keyword">if</span> start <span class="keyword">not</span> <span class="keyword">in</span> days:</span><br><span class="line">            days.add(start)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i = start + <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> i <span class="keyword">in</span> days <span class="keyword">and</span> i&lt;=end:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> i&lt;=end:</span><br><span class="line">                days.add(i)</span><br><span class="line">    <span class="keyword">return</span> len(days)</span><br></pre></td></tr></table></figure>
+
+
+<p>参考文献：1.<a href="https://www.cnblogs.com/pprp/p/9880031.html" target="_blank" rel="noopener">【算法分析】实验 1. 基于贪心的会议安排问题</a></p>
+
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>本文链接：</strong><a href="http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+      
+        <a class="mdui-ripple article_tags-link" href="../tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" rel="tag">算法学习</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="../https:/cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="../https:/cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+      <a rel="prev" class="extend prev" href="../%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6/">
+        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
+      </a>
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="../Leetcode-3/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2019 - 2020 ClownW<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="../js/mdui.js"></script>
+<script src="../js/script.js"></script>
+
+</body>
+</html>
