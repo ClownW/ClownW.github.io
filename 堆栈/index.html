@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>堆栈 | ClownW的博客</title>
+
+  <link rel="shortcut icon" href="../images/favicon.png">
+  <link rel="alternate" href="../atom.xml" title="ClownW的博客">
+  <meta name="description" content="224. Basic Calculator  计算表达式的值，只有正数（由于有括号，括号里面嵌套的表达式运算值可能是负数，因此也要考虑负数的情况），加号减号和括号。 解题思路：若没有括号，则题目会变得更加简单，直接顺序处理，每次遇到‘’+“或者”-“的时候就做加减处理，否则就更新加数的值。 当有括号时，可以看做多个没有括号的表达式的嵌套。从嵌套最内部的括号开始处理，这里可以利用栈的特性来处理这些表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆栈">
+<meta property="og:url" content="http://clownw.github.io/%E5%A0%86%E6%A0%88/">
+<meta property="og:site_name" content="ClownW的博客">
+<meta property="og:description" content="224. Basic Calculator  计算表达式的值，只有正数（由于有括号，括号里面嵌套的表达式运算值可能是负数，因此也要考虑负数的情况），加号减号和括号。 解题思路：若没有括号，则题目会变得更加简单，直接顺序处理，每次遇到‘’+“或者”-“的时候就做加减处理，否则就更新加数的值。 当有括号时，可以看做多个没有括号的表达式的嵌套。从嵌套最内部的括号开始处理，这里可以利用栈的特性来处理这些表">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://clownw.github.io/%E5%A0%86%E6%A0%88/desp224_1.png">
+<meta property="og:image" content="http://clownw.github.io/%E5%A0%86%E6%A0%88/desp224_2.png">
+<meta property="article:published_time" content="2020-03-21T07:37:49.000Z">
+<meta property="article:modified_time" content="2020-03-22T15:58:05.082Z">
+<meta property="article:author" content="ClownW">
+<meta property="article:tag" content="Leetcode Top Interview Questions">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://clownw.github.io/%E5%A0%86%E6%A0%88/desp224_1.png">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="">
+  <meta name="keywords" content=",Leetcode Top Interview Questions">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="ClownW的博客">
+  <meta name="msapplication-starturl" content="http://clownw.github.io">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ClownW的博客">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="../images/favicon.png">
+
+  
+    <meta property="article:published_time" content="Sat Mar 21 2020 15:37:49 GMT+0800">
+    <meta property="article:modified_time" content="Sun Mar 22 2020 23:58:05 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="http://clownw.github.io">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="../css/mdui.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="../index.html" class="mdui-typo-headline">ClownW的博客</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="../atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="../search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="../images/banner.png" style="height: 160px;">
+    <img src="../images/portrait.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">ClownW</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="../index.html" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../archives/2020/03/">三月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/02/">二月 2020<span class="mdui-ripple sidebar_archives-count">8</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/01/">一月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme" style="justify-content: center;">分类为空</a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions<span class="mdui-ripple sidebar_archives-count">7</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/learn/" rel="tag">learn<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" rel="tag">算法学习<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="../about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com/ClownW" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">My github profile</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="../https:/cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-2.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">堆栈</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-03-21 / <i class="iconfont">&#xe601;</i> ClownW</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=http://clownw.github.io/%E5%A0%86%E6%A0%88/">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=堆栈&url=http://clownw.github.io/%E5%A0%86%E6%A0%88/&pic=http://clownw.github.io../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=堆栈&url=http://clownw.github.io/%E5%A0%86%E6%A0%88/&via=ClownW" target="_blank" class="mdui-ripple">分享到Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://clownw.github.io/%E5%A0%86%E6%A0%88/" target="_blank" class="mdui-ripple">分享到Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=http://clownw.github.io/%E5%A0%86%E6%A0%88/" target="_blank" class="mdui-ripple">分享到Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://clownw.github.io/%E5%A0%86%E6%A0%88/&title=堆栈" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=ClownW的博客&title=堆栈&summary=&pics=http://clownw.github.io../images/favicon.png&url=http://clownw.github.io/%E5%A0%86%E6%A0%88/" target="_blank" class="mdui-ripple">分享到QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=http://clownw.github.io/%E5%A0%86%E6%A0%88/&text=堆栈" target="_blank" class="mdui-ripple">分享到Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <h3 id="224-Basic-Calculator"><a href="#224-Basic-Calculator" class="headerlink" title="224. Basic Calculator"></a>224. Basic Calculator</h3><p><img src="desp224_1.png" alt=""></p>
+<p><img src="desp224_2.png" alt=""></p>
+<p>计算表达式的值，只有正数（由于有括号，括号里面嵌套的表达式运算值可能是负数，因此也要考虑负数的情况），加号减号和括号。</p>
+<p>解题思路：若没有括号，则题目会变得更加简单，直接顺序处理，每次遇到‘’+“或者”-“的时候就做加减处理，否则就更新加数的值。</p>
+<p>当有括号时，可以看做多个没有括号的表达式的嵌套。从嵌套最内部的括号开始处理，这里可以利用栈的特性来处理这些表达式。即当发现“)”以外的符号时，直接入栈；当发现“)”时，做出栈处理直到发现第一个”(“,得到了一个括号中嵌套的表达式。再按上述方法处理表达式。</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calculate</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># 用来计算某个表达式的值</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">calc_lst</span><span class="params">(expression_lst)</span>:</span></span><br><span class="line">            <span class="comment"># mode: 0表示减，1表示加</span></span><br><span class="line">            mode,pre,post = <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> expression_lst:</span><br><span class="line">                cur = expression_lst.popleft()</span><br><span class="line">                <span class="comment"># 要处理负数的情况</span></span><br><span class="line">                <span class="keyword">if</span> cur.lstrip(<span class="string">'-'</span>).isdigit():</span><br><span class="line">                    post = post*<span class="number">10</span>+int(cur)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">if</span> mode:</span><br><span class="line">                        pre += post</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        pre -= post</span><br><span class="line">                    post = <span class="number">0</span></span><br><span class="line">                    <span class="keyword">if</span> cur == <span class="string">'+'</span>:</span><br><span class="line">                        mode = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        mode = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> mode:</span><br><span class="line">                pre += post</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pre -= post</span><br><span class="line">            <span class="keyword">return</span> pre</span><br><span class="line">        </span><br><span class="line">        stack = collections.deque()</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> char == <span class="string">' '</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="comment"># 处理“）”的情况，出栈，直到发现“（”为止</span></span><br><span class="line">            <span class="keyword">elif</span> char == <span class="string">')'</span>:</span><br><span class="line">                expression_lst = collections.deque()</span><br><span class="line">                <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                    letter = stack.pop()</span><br><span class="line">                    <span class="keyword">if</span> letter == <span class="string">'('</span>:</span><br><span class="line">                        <span class="comment"># 调用上面的函数来计算表达式</span></span><br><span class="line">                        res = calc_lst(expression_lst)</span><br><span class="line">                        <span class="comment"># 将计算结果压栈</span></span><br><span class="line">                        stack.append(str(res))</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        expression_lst.appendleft(letter)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                stack.append(char)</span><br><span class="line">        <span class="keyword">return</span> calc_lst(stack)</span><br></pre></td></tr></table></figure>
+
+
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>本文链接：</strong><a href="http://clownw.github.io/%E5%A0%86%E6%A0%88/">http://clownw.github.io/%E5%A0%86%E6%A0%88/</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+      
+        <a class="mdui-ripple article_tags-link" href="../tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="../https:/cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="../https:/cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="../%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2019 - 2020 ClownW<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="../js/mdui.js"></script>
+<script src="../js/script.js"></script>
+
+</body>
+</html>
