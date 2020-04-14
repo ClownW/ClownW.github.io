@@ -8,33 +8,27 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>4.Median of Two Sorted Arrays | ClownW的博客</title>
+  <title>二分法总结 | ClownW的博客</title>
 
   <link rel="shortcut icon" href="../images/favicon.png">
   <link rel="alternate" href="../atom.xml" title="ClownW的博客">
-  <meta name="description" content="4.Leetcode Top Interview Questions 题目要求找到两个已经排好序的数组的中位数，并且时间限制在$O(log(m+n))$。 首先明确中位数的定义：将一个数组分成等长的两部分，其中左边最大的元素小于右边最小的元素。 这里有两个数组A,B。不妨对A做切分，由于要求两边等长，B的切分位置也可以推出来。令A为两个数组中更短的那个。    需要保证两点：  len(left_">
+  <meta name="description" content="两个模板： 123456789101112131415def binary_search_1(left, right, target):    while left &lt; right:        mid &#x3D; left+(right-left)&#x2F;&#x2F;2        if check(mid)&lt;target:            left &#x3D; mid+1        else:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4.Median of Two Sorted Arrays">
-<meta property="og:url" content="http://clownw.github.io/Leetcode-3/">
+<meta property="og:title" content="二分法总结">
+<meta property="og:url" content="http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/">
 <meta property="og:site_name" content="ClownW的博客">
-<meta property="og:description" content="4.Leetcode Top Interview Questions 题目要求找到两个已经排好序的数组的中位数，并且时间限制在$O(log(m+n))$。 首先明确中位数的定义：将一个数组分成等长的两部分，其中左边最大的元素小于右边最小的元素。 这里有两个数组A,B。不妨对A做切分，由于要求两边等长，B的切分位置也可以推出来。令A为两个数组中更短的那个。    需要保证两点：  len(left_">
+<meta property="og:description" content="两个模板： 123456789101112131415def binary_search_1(left, right, target):    while left &lt; right:        mid &#x3D; left+(right-left)&#x2F;&#x2F;2        if check(mid)&lt;target:            left &#x3D; mid+1        else:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://clownw.github.io/Leetcode-3/4.png">
-<meta property="og:image" content="http://clownw.github.io/Leetcode-3/cutA.png">
-<meta property="og:image" content="http://clownw.github.io/Leetcode-3/cutB.png">
-<meta property="og:image" content="http://clownw.github.io/Leetcode-3/cutAB.png">
-<meta property="og:image" content="http://clownw.github.io/Leetcode-3/cases.png">
-<meta property="article:published_time" content="2020-02-13T09:13:39.000Z">
-<meta property="article:modified_time" content="2020-02-13T12:00:58.430Z">
+<meta property="article:published_time" content="2020-03-30T05:16:18.000Z">
+<meta property="article:modified_time" content="2020-04-08T16:25:08.534Z">
 <meta property="article:author" content="ClownW">
-<meta property="article:tag" content="Leetcode Top Interview Questions">
+<meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://clownw.github.io/Leetcode-3/4.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="">
-  <meta name="keywords" content=",Leetcode Top Interview Questions">
+  <meta name="keywords" content=",算法总结">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="ClownW的博客">
@@ -46,8 +40,8 @@
   <link rel="apple-touch-icon" href="../images/favicon.png">
 
   
-    <meta property="article:published_time" content="Thu Feb 13 2020 17:13:39 GMT+0800">
-    <meta property="article:modified_time" content="Thu Feb 13 2020 20:00:58 GMT+0800">
+    <meta property="article:published_time" content="Mon Mar 30 2020 13:16:18 GMT+0800">
+    <meta property="article:modified_time" content="Thu Apr 09 2020 00:25:08 GMT+0800">
   
 
   
@@ -172,11 +166,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-14.png" style="max-height: 240px;">
+      <img src="/images/random/material-8.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">4.Median of Two Sorted Arrays</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-02-13 / <i class="iconfont">&#xe601;</i> ClownW</div>
+          <div class="mdui-card-primary-title">二分法总结</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-03-30 / <i class="iconfont">&#xe601;</i> ClownW</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -188,7 +182,7 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=http://clownw.github.io/Leetcode-3/">
+                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/">
               
             </li>
           </ul>
@@ -197,85 +191,64 @@
           <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
           <ul class="mdui-menu" id="share_menu">
             <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=4.Median of Two Sorted Arrays&url=http://clownw.github.io/Leetcode-3/&pic=http://clownw.github.io../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=二分法总结&url=http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/&pic=http://clownw.github.io../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=4.Median of Two Sorted Arrays&url=http://clownw.github.io/Leetcode-3/&via=ClownW" target="_blank" class="mdui-ripple">分享到Twitter</a>
+              <a href="https://twitter.com/intent/tweet?text=二分法总结&url=http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/&via=ClownW" target="_blank" class="mdui-ripple">分享到Twitter</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=http://clownw.github.io/Leetcode-3/" target="_blank" class="mdui-ripple">分享到Facebook</a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/" target="_blank" class="mdui-ripple">分享到Facebook</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=http://clownw.github.io/Leetcode-3/" target="_blank" class="mdui-ripple">分享到Google+</a>
+              <a href="https://plus.google.com/share?url=http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/" target="_blank" class="mdui-ripple">分享到Google+</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://clownw.github.io/Leetcode-3/&title=4.Median of Two Sorted Arrays" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/&title=二分法总结" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=ClownW的博客&title=4.Median of Two Sorted Arrays&summary=&pics=http://clownw.github.io../images/favicon.png&url=http://clownw.github.io/Leetcode-3/" target="_blank" class="mdui-ripple">分享到QQ</a>
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=ClownW的博客&title=二分法总结&summary=&pics=http://clownw.github.io../images/favicon.png&url=http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/" target="_blank" class="mdui-ripple">分享到QQ</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=http://clownw.github.io/Leetcode-3/&text=4.Median of Two Sorted Arrays" target="_blank" class="mdui-ripple">分享到Telegram</a>
+              <a href="https://telegram.me/share/url?url=http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/&text=二分法总结" target="_blank" class="mdui-ripple">分享到Telegram</a>
             </li>
           </ul>
         
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <h3 id="4-Leetcode-Top-Interview-Questions"><a href="#4-Leetcode-Top-Interview-Questions" class="headerlink" title="4.Leetcode Top Interview Questions"></a>4.Leetcode Top Interview Questions</h3><p><img src="4.png" alt=""></p>
-<p>题目要求找到两个已经排好序的数组的中位数，并且时间限制在$O(log(m+n))$。</p>
-<p>首先明确中位数的定义：<strong>将一个数组分成等长的两部分，其中左边最大的元素小于右边最小的元素。</strong></p>
-<p>这里有两个数组A,B。不妨对A做切分，由于要求两边等长，B的切分位置也可以推出来。令A为两个数组中更短的那个。</p>
-<p><img src="cutA.png" alt=""></p>
-<p><img src="cutB.png" alt=""></p>
-<p><img src="cutAB.png" alt=""></p>
-<p>需要保证两点：</p>
-<ol>
-<li>len(left_part) = len(right_part)</li>
-<li>max(left_part) &lt;= min(right_part)</li>
-</ol>
-<p>若找到某个i满足上述条件，则找到了完美切分，则</p>
-<p>$meidan = (max(left_part)+min(right_part))/2$</p>
-<p>为了满足上面两个条件，必须保证</p>
-<ol>
-<li>i + j = (m-i) + (n-j) (或 (m-i) + (n-j) + 1)，由于j取整数，因此 j = (m+n+1)/2 - i</li>
-<li>B[j-1] &lt;= A[i] 且 A[i-1] &lt;= B[j]</li>
-</ol>
-<p>这里是假设A[i-1]，B[j-1]，A[i]，B[j]全都存在的情况下，当i=0,i=m,j=0或j=n时，这些值可能不存在。</p>
-<p>为什么要令A为更短的那个？</p>
-<p>因为 j = (m+n+1)/2 - i，若A为更长的那个，则j可能会出现负数。</p>
-<p>按照下面的步骤来进行二分查找：</p>
-<ol>
-<li>设imin = 0, imax = m, 在[imin, imax]之中开始搜索</li>
-<li>设i = (imin+imax)/2, j = (m+n+1)/2 - i</li>
-<li>由以上两步满足了len(left_part) = len(right_part)，并且最终可能有三种情况。<ul>
-<li>B[j-1]&lt;=A[i]且A[i-1]&lt;B[j]，说明已经找到了正确的i，停止搜索</li>
-<li>B[j-1]&gt;A[i]，说明A[i]太小了，需要增加i，因此将搜索范围调整到[i+1, imax]</li>
-<li>A[i-1]&gt;B[j]，说明A[i-1]太大了，需要减小i，因此将搜索范围调整为[imin, i-1]</li>
-</ul>
-</li>
-</ol>
-<p>当找到了i时，</p>
-<ol>
-<li>若m+n为奇数，则中位数为max(A[i-1], B[j-1])</li>
-<li>若m+n为偶数，则中位数为(max(A[i-1], B[j-1])+min(A[i], B[j]))/2</li>
-</ol>
-<p>在边界情况时只需要考虑一种，即B[j-1]&lt;=A[i]或A[i-1]&lt;B[j]。</p>
-<p>因此综合起来的三种情况：</p>
-<p><img src="cases.png" alt=""></p>
-<p>代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">median</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    m, n = len(A), len(B)</span><br><span class="line">    <span class="keyword">if</span> m &gt; n:</span><br><span class="line">        A, B, m, n = B, A, n, m</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError</span><br><span class="line"></span><br><span class="line">    imin, imax, half_len = <span class="number">0</span>, m, (m + n + <span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> imin &lt;= imax:</span><br><span class="line">        i = (imin + imax) / <span class="number">2</span></span><br><span class="line">        j = half_len - i</span><br><span class="line">        <span class="keyword">if</span> i &lt; m <span class="keyword">and</span> B[j<span class="number">-1</span>] &gt; A[i]:</span><br><span class="line">            <span class="comment"># i is too small, must increase it</span></span><br><span class="line">            imin = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> A[i<span class="number">-1</span>] &gt; B[j]:</span><br><span class="line">            <span class="comment"># i is too big, must decrease it</span></span><br><span class="line">            imax = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># i is perfect</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span>: max_of_left = B[j<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">elif</span> j == <span class="number">0</span>: max_of_left = A[i<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">else</span>: max_of_left = max(A[i<span class="number">-1</span>], B[j<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (m + n) % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> max_of_left</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == m: min_of_right = B[j]</span><br><span class="line">            <span class="keyword">elif</span> j == n: min_of_right = A[i]</span><br><span class="line">            <span class="keyword">else</span>: min_of_right = min(A[i], B[j])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> (max_of_left + min_of_right) / <span class="number">2.0</span></span><br></pre></td></tr></table></figure>
+      <p>两个模板：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search_1</span><span class="params">(left, right, target)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        mid = left+(right-left)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> check(mid)&lt;target:</span><br><span class="line">            left = mid+<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            right = mid</span><br><span class="line">            </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search_2</span><span class="params">(left, right, target)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        mid = left+(right-left+<span class="number">1</span>)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> check(mid)&gt;target:</span><br><span class="line">            right = mid<span class="number">-1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left = mid</span><br></pre></td></tr></table></figure>
+
+<p>上面两个模板的不同在于选择的条件不同，即哪个分支不包含中位数，因此也影响了中位数的计算。</p>
+<p>说明：</p>
+<p>1.使用while left&lt;right，而不是left&lt;=right，这样在返回时一定有left=right，避免了最后思考到底返回left还是right</p>
+<p>2.计算中位数，使用mid = left+(right-left)//2而不是mid=(left+right)//2，这样可以避免当left或right太大时的溢出问题；</p>
+<p>left+(right-left)//2和left+(right-left+1)//2的区别：当区间长度为奇数时，都能返回中位数的索引，当区间长度为偶数时，前者返回左中位数的索引，后者返回右中位数的索引。</p>
+<p>例如当left=3, right=4时，前者算得mid=3, 后者算得mid=4</p>
+<p>3.分支选择，只写两个分支，判断check（mid）==target可以不用写，这种情况很少碰到，可以被包含在两个分钟中的一个里；</p>
+<p>一般先考虑比较好思考的部分（一般是不包含中位数的情况），比如在求x的平方根时，如果一个数的平方小于或者等于x，则这个数可能是也可能不是x的平方根；但如果一个数的平方大于x，则这个数不可能是x的平方根。</p>
+<p>分支选择的依据就是先考虑简单的，然后将更复杂的包含在else里面。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> check(mid)&lt;target:</span><br><span class="line">    left = mid+<span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    right = mid</span><br></pre></td></tr></table></figure>
+<p>在这里，mid小于target，那么left就应该比mid更大才有可能等于target；</p>
+<p>那么在else中，mid大于等于target， 则mid有可能为target，那么right就不能收缩到mid-1，而应该等于mid</p>
+<p>4.选择left+(right-left)//2或者left+(right-left+1)//2，</p>
+<p>如果选择分支是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> check(mid)&gt;target:</span><br><span class="line">    right = mid<span class="number">-1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    left = mid</span><br></pre></td></tr></table></figure>
+<p>当left，right只相差1时，若进入了left=mid分支，如果中位数的选择方式是left+(right-left)//2，即选择左中位数，那么将会进入死循环中，因此需要将中位数的选择方式改为left+(right-left+1)//2</p>
+<p>因此两种中位数的选择方式分别对应了最前面的两个模板。</p>
+<p>5.在最后返回时，有时需要判断得到的left（或right，二者相等）是否也满足条件。因为有时候可能出现目标不在搜索范围的情况。例如查找某个元素是否在一个排好序的数组的给定区间中，就可能发生不在的情况，这时候需要做二分法的“后处理”，即验证一下最后收缩到的那个数。</p>
 
       <blockquote class="mdui-m-t-5">
         
-        <strong>本文链接：</strong><a href="http://clownw.github.io/Leetcode-3/">http://clownw.github.io/Leetcode-3/</a>
+        <strong>本文链接：</strong><a href="http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/">http://clownw.github.io/%E4%BA%8C%E5%88%86%E6%B3%95%E6%80%BB%E7%BB%93/</a>
       </blockquote>
       
     </div>
     <footer class="mdui-card-actions">
       
       
-        <a class="mdui-ripple article_tags-link" href="../tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions</a>
+        <a class="mdui-ripple article_tags-link" href="../tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="tag">算法总结</a>
       
     </footer>
     
@@ -289,14 +262,14 @@
 
   <nav id="paginator">
     
-      <a rel="prev" class="extend prev" href="../%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
+      <a rel="prev" class="extend prev" href="../%E5%B9%B6%E6%9F%A5%E9%9B%86/">
         <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
       </a>
     
     <div class="spacer"></div>
     
-      <a rel="next" class="extend next" href="../Leetcode-2/">
+      <a rel="next" class="extend next" href="../%E5%9B%9E%E6%BA%AF%E6%B3%95/">
         下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
       </a>

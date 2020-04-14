@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>神经网络总结 | ClownW的博客</title>
+
+  <link rel="shortcut icon" href="../images/favicon.png">
+  <link rel="alternate" href="../atom.xml" title="ClownW的博客">
+  <meta name="description" content="神经网络知识点总结1.为什么需要非线性的激励函数？ 如果hidden layer的激励函数是线性函数，那么可以看出这两层可以合并成新的一层，即和没有这个隐藏层直接输入没有什么区别。 对于有很多个hidden layer的深度神经网络来说，如果hidden layer的激励函数都是线性函数，那么这些隐藏层几乎都没有什么作用。 因此我们需要非线性函数来实现神经网络的功能。 2.为什么需要随机初始化？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络总结">
+<meta property="og:url" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/">
+<meta property="og:site_name" content="ClownW的博客">
+<meta property="og:description" content="神经网络知识点总结1.为什么需要非线性的激励函数？ 如果hidden layer的激励函数是线性函数，那么可以看出这两层可以合并成新的一层，即和没有这个隐藏层直接输入没有什么区别。 对于有很多个hidden layer的深度神经网络来说，如果hidden layer的激励函数都是线性函数，那么这些隐藏层几乎都没有什么作用。 因此我们需要非线性函数来实现神经网络的功能。 2.为什么需要随机初始化？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E6%BF%80%E5%8A%B1%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E9%9A%8F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/overfitting.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/dropout1.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/Normalizing_input.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/sigmoid.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/tanh.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/momentum.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/batchnorm1.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/softmax.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/softmax_loss.png">
+<meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/precision_recall.png">
+<meta property="article:published_time" content="2020-03-26T14:48:55.000Z">
+<meta property="article:modified_time" content="2020-03-27T14:50:07.229Z">
+<meta property="article:author" content="ClownW">
+<meta property="article:tag" content="神经网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E6%BF%80%E5%8A%B1%E5%87%BD%E6%95%B0.png">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="">
+  <meta name="keywords" content=",神经网络">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="ClownW的博客">
+  <meta name="msapplication-starturl" content="http://clownw.github.io">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ClownW的博客">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="../images/favicon.png">
+
+  
+    <meta property="article:published_time" content="Thu Mar 26 2020 22:48:55 GMT+0800">
+    <meta property="article:modified_time" content="Fri Mar 27 2020 22:50:07 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="http://clownw.github.io">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="../css/mdui.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="../index.html" class="mdui-typo-headline">ClownW的博客</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="../atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="../search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="../images/banner.png" style="height: 160px;">
+    <img src="../images/portrait.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">ClownW</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="../index.html" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../archives/2020/04/">四月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/03/">三月 2020<span class="mdui-ripple sidebar_archives-count">5</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/02/">二月 2020<span class="mdui-ripple sidebar_archives-count">8</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/01/">一月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme" style="justify-content: center;">分类为空</a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="../tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions<span class="mdui-ripple sidebar_archives-count">7</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/learn/" rel="tag">learn<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" rel="tag">算法学习<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="tag">算法总结<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        
+      </div>
+    </div>
+    <a href="../about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+          <a href="https://github.com/ClownW" target="_blank" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme-accent" style="justify-content: center;">My github profile</a>
+        
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="../https:/cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-8.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">神经网络总结</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-03-26 / <i class="iconfont">&#xe601;</i> ClownW</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=神经网络总结&url=http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/&pic=http://clownw.github.io../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=神经网络总结&url=http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/&via=ClownW" target="_blank" class="mdui-ripple">分享到Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/" target="_blank" class="mdui-ripple">分享到Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/" target="_blank" class="mdui-ripple">分享到Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/&title=神经网络总结" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=ClownW的博客&title=神经网络总结&summary=&pics=http://clownw.github.io../images/favicon.png&url=http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/" target="_blank" class="mdui-ripple">分享到QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/&text=神经网络总结" target="_blank" class="mdui-ripple">分享到Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <h1 id="神经网络知识点总结"><a href="#神经网络知识点总结" class="headerlink" title="神经网络知识点总结"></a>神经网络知识点总结</h1><h3 id="1-为什么需要非线性的激励函数？"><a href="#1-为什么需要非线性的激励函数？" class="headerlink" title="1.为什么需要非线性的激励函数？"></a>1.为什么需要非线性的激励函数？</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E6%BF%80%E5%8A%B1%E5%87%BD%E6%95%B0.png" alt=""></p>
+<p>如果hidden layer的激励函数是线性函数，那么可以看出这两层可以合并成新的一层，即和没有这个隐藏层直接输入没有什么区别。</p>
+<p>对于有很多个hidden layer的深度神经网络来说，如果hidden layer的激励函数都是线性函数，那么这些隐藏层几乎都没有什么作用。</p>
+<p>因此我们需要非线性函数来实现神经网络的功能。</p>
+<h3 id="2-为什么需要随机初始化？"><a href="#2-为什么需要随机初始化？" class="headerlink" title="2.为什么需要随机初始化？"></a>2.为什么需要随机初始化？</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E9%9A%8F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt=""></p>
+<p>​        如果将W全部初始化为0，在logistic regression中是可行的，但是在神经网络中这样会使得所有的隐藏层计算的函数都相同，无论经过多少次梯度下降这些隐藏层神经元计算的函数都是相同的，而我们需要不同的隐藏层单元来计算不同的函数，因此需要进行随机初始化。</p>
+<p>​        随机初始化的方法：W[1] = np.random.randn((2, 2)) * 0.01</p>
+<p>​        为什么要乘一个0.01？因为sigmoid和tanh函数在z很大或者很小的时候梯度都趋近于0，所以说应尽量使z的值比较小，这样进行梯度下降才能更快得学习。</p>
+<h3 id="3-手写前向传播？"><a href="#3-手写前向传播？" class="headerlink" title="3.手写前向传播？"></a>3.手写前向传播？</h3><p>先略过。</p>
+<h3 id="4-偏差（bias）和方差-variance"><a href="#4-偏差（bias）和方差-variance" class="headerlink" title="4.偏差（bias）和方差(variance)"></a>4.偏差（bias）和方差(variance)</h3><p>高偏差解决方法：</p>
+<p>1.更大的网络</p>
+<p>2.Train larger</p>
+<p>3.网络结构搜索</p>
+<p>高方差解决方法：</p>
+<p>1.更多的数据</p>
+<p>2.正则化</p>
+<p>3.网络结构搜索</p>
+<h3 id="5-正则化能减少overfitting的原因"><a href="#5-正则化能减少overfitting的原因" class="headerlink" title="5.正则化能减少overfitting的原因"></a>5.正则化能减少overfitting的原因</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/overfitting.png" alt=""></p>
+<p>解释一：</p>
+<p>当一个神经网络出现high variance问题时，如果设置lambda为一个很大的值，则W会趋近于0，这样这个深度神经网络很多个神经元的 权值就几乎为0，也会导致这个神经网络变得很简单，简单的神经网络无法做出复杂的分类，因此会由high variance变为high bias。<strong>在这中间必然有某个lambda会使得整个神经网络工作just right。</strong></p>
+<p>解释二：</p>
+<p>当lambda很大时，W很小，导致Z也很小，因此在激励函数tanh的线性区域内，整个神经网络几乎都在做线性计算，因此无法计算出复杂的decision boundry，自然也就无法拟合到过拟合那样复杂的decision boundary。</p>
+<h3 id="6-Dropout-理解"><a href="#6-Dropout-理解" class="headerlink" title="6.Dropout 理解"></a>6.Dropout 理解</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/dropout1.png" alt=""></p>
+<p>使用drop out方法来减少正则化，以相同的概率随机drop out掉每一个隐藏层的神经元。</p>
+<p>这样相当于每次只使用一个小神经网络来进行训练。</p>
+<p><strong>有关keep_prob和scaling</strong></p>
+<p>​        设置keep_prob,这是保留每层的神经元的概率，keep_prob = 0.8表示要每个神经元有0.8的概率被保留。</p>
+<p>​        对于l = 3的第三层来说，设置一个概率矩阵 d3 = np.random.rand(a3.shape[0], a3.shape[1]) &lt; keep_prob。得到一个全部为True和Fales的矩阵，用这个矩阵和a3进行对应元相乘，a3 = np.multiply(a3, d3)</p>
+<p>​        最后还需要scaling a3，令a3 = a3/keep_prob</p>
+<p>​        最后一步的原因是我们只希望drop掉某些神经元，但并不希望改变a3的值，如果不进行scaling则最后a3的值会变小约20%，因此需要进行scaling。这种最后进行scaling的方法又叫inverted dropout</p>
+<p><strong>有关scaling：</strong></p>
+<p>简单讲就是：</p>
+<p>训练有scale，测试不用管。</p>
+<p>训练没scale，测试要乘p。</p>
+<p><strong>dropout起作用的原因：</strong></p>
+<p>​        dropout起作用的原因：<strong>试想对input进行dropout,则会有一些features被dropout掉，这使得输出无法过多得依赖某个特征，因此避免了overfitting</strong></p>
+<p>​        对于一个深度神经网络，我们可以对每一层设置不同的keep_prob,对于我们认为可能会导致dropout的层设置更小的keep_prob，对于认为不太会发生overfitting的层几乎不进行dropout，设置keep_prob为1</p>
+<p><strong>dropout的缺点：</strong></p>
+<p>使用dropout的一个<strong>缺点是我们的cost function J的抖动变大。</strong></p>
+<h3 id="7-其他正则化"><a href="#7-其他正则化" class="headerlink" title="7.其他正则化"></a>7.其他正则化</h3><p>1.Data augmentation</p>
+<p>2.early stopping</p>
+<p>另一种方法是进行early stopping，在发现dev set error开始上升的时候停止训练，取这个时候的模型参数来阻止overfittiing。<strong>缺点是可能使cost function J没有优化到最优。</strong></p>
+<p>而当用L2 regularization的时候，<strong>缺点是要选择超参数lambda的值，需要很大的计算量。当计算能力足够的时候，L2 regularization会优于 early stopping。</strong></p>
+<h3 id="8-输入标准化（Normalizing-inputs）"><a href="#8-输入标准化（Normalizing-inputs）" class="headerlink" title="8.输入标准化（Normalizing inputs）"></a>8.输入标准化（Normalizing inputs）</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/Normalizing_input.png" alt=""></p>
+<p>通过左右对比可以发现，normalizing以后的输入，更有利于找到最优解，因此通过normalization可以使梯度下降更快得找到全局最优点。</p>
+<h3 id="9-梯度消失和梯度爆炸"><a href="#9-梯度消失和梯度爆炸" class="headerlink" title="9.梯度消失和梯度爆炸"></a>9.梯度消失和梯度爆炸</h3><p><strong>梯度消失原因：</strong></p>
+<p>1.网络过深</p>
+<p>2.采用了不合适的损失函数</p>
+<p><strong>梯度爆炸原因：</strong></p>
+<p>1.网络过深</p>
+<p>2.权值初始化太大</p>
+<p><strong>从深层网络角度讲：</strong>从深层网络角度来讲，不同的层学习的速度差异很大，表现为网络中靠近输出的层学习的情况很好，靠近输入的层学习的很慢，有时甚至训练了很久，前几层的权值和刚开始随机初始化的值差不多。因此，梯度消失、爆炸，其根本原因在于反向传播训练法则，属于先天不足，可以考虑hinton提出的capsule网络。<br><strong>从激活函数角度：</strong></p>
+<p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/sigmoid.png" alt=""></p>
+<p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/tanh.png" alt=""></p>
+<p>sigmoid和tanh函数的导数最大值都小于1，因此经过链式求导后，很容易发生梯度消失。</p>
+<p><strong>梯度爆炸解决方法：</strong></p>
+<p>梯度剪切，正则化（如果发生梯度爆炸，权值的范数就会变得非常大，而正则化项可以约束这一点）</p>
+<p><strong>而在深度神经网络中，往往梯度消失发生得更多一些</strong></p>
+<p><strong>梯度消失解决方法：</strong></p>
+<p>1.修改激活函数</p>
+<p>2.batchnorm，反向传播式子中有x的存在，而batchnorm规范了每一层的均值和方差，消除了x带来的放大缩小的影响，从而有助于解决梯度消失或梯度爆炸。</p>
+<p>3.使用残差结构</p>
+<h3 id="10-Momentum方法"><a href="#10-Momentum方法" class="headerlink" title="10.Momentum方法"></a>10.Momentum方法</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/momentum.png" alt=""></p>
+<p>对于每次迭代中（对于mini-batch中的某个t）：</p>
+<p>计算Vdw = βVdw + (1-β)dw</p>
+<p>​    Vdb = βVdb + (1-β)db</p>
+<p>在更新W和b时：利用公式Vθ = βVθt + （1 - β）θt</p>
+<p>W = W - αVdw</p>
+<p>b = b - αVdb</p>
+<p>用Vdw和Vdb来更新W和b</p>
+<p>相比于用dw和db来更新的好处：</p>
+<p>取了前面若干dw和db的平均值来进行计算，比如在纵向，平均值为0，成功减小了纵向的学习速率，对于横向依然保持一个较快的学习速率。这样就使得学习更为平滑，从而加快了收敛。</p>
+<p>对于公式的理解:</p>
+<p>Vdw = βVdw + (1-β)dw</p>
+<p>Vdb = βVdb + (1-β)db</p>
+<p>其中dw,db可以认为是加速项，Vdw,Vdb看做速度，β小于1，可以用来防止速度无限增大</p>
+<h3 id="11-批标准化"><a href="#11-批标准化" class="headerlink" title="11.批标准化"></a>11.批标准化</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/batchnorm1.png" alt=""></p>
+<p>推荐对z（即神经网络的直接输出，此时还没有经过激励函数）进行标准化。</p>
+<p><strong>批标准化实现：</strong>如图所示，先将z标准化为均值为0，方差为1的z_norm，再引入参数β，γ来调整z的均值和方差。β，γ利用梯度下降来进行更新。</p>
+<p>在深度学习框架中，这些都被封装起来。</p>
+<p><strong>批标准化的作用：</strong></p>
+<p>1.提升了训练速度，使收敛速度大大加快</p>
+<p>2.简化调参过程，对于参数初始化的要求降低，可以使用大的学习率</p>
+<p><strong>提升训练速度的原因：</strong></p>
+<p>a) 稳定学习效果。机器学习领域有个很重要的假设：<strong>IID独立同分布假设</strong>，就是假设训练数据和测试数据是满足相同分布的，这是通过训练数据获得的模型能够在测试集获得好的效果的一个基本保障。<strong>BatchNorm就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的。</strong>如果任由输入的分布变化而不加约束，网络就很难稳定得学习规律。</p>
+<p>b) 加速收敛。因为深层神经网络在做非线性变换前的<strong>激活输入值</strong>（就是那个x=WU+B，U是输入）<strong>随着网络深度加深或者在训练过程中，其分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往非线性函数的取值区间的上下限两端靠近</strong>（对于Sigmoid函数来说，意味着激活输入值WU+B是大的负值或正值），所以这<strong>导致反向传播时低层神经网络的梯度消失</strong>，这是训练深层神经网络收敛越来越慢的<strong>本质原因</strong>，<strong>而BN就是通过一定的规范化手段，把每层神经网络任意神经元这个输入值的分布强行拉回到均值为0方差为1的标准正态分布</strong>，</p>
+<h3 id="12-Softmax"><a href="#12-Softmax" class="headerlink" title="12.Softmax"></a>12.Softmax</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/softmax.png" alt=""></p>
+<p>softmax的计算如图，当C=2，即只有两个类时，就退化为logistic函数。</p>
+<p>loss函数的计算：</p>
+<p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/softmax_loss.png" alt=""></p>
+<h3 id="13-precision和recall"><a href="#13-precision和recall" class="headerlink" title="13. precision和recall"></a>13. precision和recall</h3><p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/precision_recall.png" alt=""></p>
+<p>$precision = \frac{TP}{TP+FP}$    $recall = \frac{TP}{TP+FN}$ </p>
+<p>从公式可以看出:</p>
+<p>precision表示被检测为真的，有多少实际为真</p>
+<p>recall表示实际为真的，有多少被检测到为真了</p>
+<p>$F_1 = \frac{1}{\frac{1}{P}+\frac{1}{R}}$</p>
+<p>但从precision和recall来看检测效果都是片面的，因此引入F1-score来综合考量这两个指标。</p>
+
+      <blockquote class="mdui-m-t-5">
+        
+        <strong>本文链接：</strong><a href="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/">http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/</a>
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+      
+        <a class="mdui-ripple article_tags-link" href="../tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="../https:/cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="../https:/cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+      <a rel="prev" class="extend prev" href="../%E5%9B%9E%E6%BA%AF%E6%B3%95/">
+        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
+      </a>
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="../%E5%A0%86%E6%A0%88/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2019 - 2020 ClownW<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="../js/mdui.js"></script>
+<script src="../js/script.js"></script>
+
+</body>
+</html>

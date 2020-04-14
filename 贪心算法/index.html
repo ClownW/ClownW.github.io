@@ -12,17 +12,17 @@
 
   <link rel="shortcut icon" href="../images/favicon.png">
   <link rel="alternate" href="../atom.xml" title="ClownW的博客">
-  <meta name="description" content="贪心算法两例1.会议安排问题（一） 问题描述：有n个会议集合 A&#x3D;{1,2,3…n},这些会议都使用的是同一个会议室且在同一时间内最多只有一个会议可以使用该会议室，所以需要根据所有会议举办的时间进行协商。目标是尽可能选择更多的会议来使用资源。 给出每一个会议所占用的时间段，表示形式为 $[b_i,e_i)$ , 其中$b_i,e_i$是int型的整数来代表时间。 算法设计，包括策略与数据结构的选择">
+  <meta name="description" content="可以应用贪心算法的一些特征：  Choice of an element depends only on its immediate neighbours (wiggle sort). Answer is monotonically non-decreasing or non-increasing (sorting). This is also applicable for LIS for exa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贪心算法">
 <meta property="og:url" content="http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
 <meta property="og:site_name" content="ClownW的博客">
-<meta property="og:description" content="贪心算法两例1.会议安排问题（一） 问题描述：有n个会议集合 A&#x3D;{1,2,3…n},这些会议都使用的是同一个会议室且在同一时间内最多只有一个会议可以使用该会议室，所以需要根据所有会议举办的时间进行协商。目标是尽可能选择更多的会议来使用资源。 给出每一个会议所占用的时间段，表示形式为 $[b_i,e_i)$ , 其中$b_i,e_i$是int型的整数来代表时间。 算法设计，包括策略与数据结构的选择">
+<meta property="og:description" content="可以应用贪心算法的一些特征：  Choice of an element depends only on its immediate neighbours (wiggle sort). Answer is monotonically non-decreasing or non-increasing (sorting). This is also applicable for LIS for exa">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/1353_descrip.png">
 <meta property="og:image" content="http://clownw.github.io/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/1353_ex.png">
 <meta property="article:published_time" content="2020-02-17T14:37:00.000Z">
-<meta property="article:modified_time" content="2020-02-17T15:15:08.495Z">
+<meta property="article:modified_time" content="2020-03-22T16:42:25.697Z">
 <meta property="article:author" content="ClownW">
 <meta property="article:tag" content="算法学习">
 <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
 
   
     <meta property="article:published_time" content="Mon Feb 17 2020 22:37:00 GMT+0800">
-    <meta property="article:modified_time" content="Mon Feb 17 2020 23:15:08 GMT+0800">
+    <meta property="article:modified_time" content="Mon Mar 23 2020 00:42:25 GMT+0800">
   
 
   
@@ -108,7 +108,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="../archives/2020/03/">三月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/02/">二月 2020<span class="mdui-ripple sidebar_archives-count">8</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/01/">一月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="../archives/2020/04/">四月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/03/">三月 2020<span class="mdui-ripple sidebar_archives-count">5</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/02/">二月 2020<span class="mdui-ripple sidebar_archives-count">8</span></a><a class="mdui-ripple sidebar_archives-link" href="../archives/2020/01/">一月 2020<span class="mdui-ripple sidebar_archives-count">1</span></a>
         
       </div>
     </div>
@@ -134,7 +134,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="../tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions<span class="mdui-ripple sidebar_archives-count">7</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/learn/" rel="tag">learn<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" rel="tag">算法学习<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="../tags/Leetcode-Top-Interview-Questions/" rel="tag">Leetcode Top Interview Questions<span class="mdui-ripple sidebar_archives-count">7</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/learn/" rel="tag">learn<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" rel="tag">算法学习<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="../tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="tag">算法总结<span class="mdui-ripple sidebar_archives-count">4</span></a>
         
       </div>
     </div>
@@ -169,7 +169,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-10.png" style="max-height: 240px;">
+      <img src="/images/random/material-17.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">贪心算法</div>
@@ -219,7 +219,16 @@
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <h3 id="贪心算法两例"><a href="#贪心算法两例" class="headerlink" title="贪心算法两例"></a>贪心算法两例</h3><p>1.会议安排问题（一）</p>
+      <p>可以应用贪心算法的一些特征：</p>
+<ol>
+<li>Choice of an element depends only on its immediate neighbours (wiggle sort).</li>
+<li>Answer is monotonically non-decreasing or non-increasing (sorting). This is also applicable for LIS for example.</li>
+<li>Anything that requires lexicographically largest or smallest of something.</li>
+<li>Anything where processing the input in sorted order will help.</li>
+<li>Anything where processing the input in forward or reverse (as given) will help.</li>
+<li>Anything which requires you to track the minimum or maximum of something (think of sliding window problems).</li>
+</ol>
+<h3 id="贪心算法两例"><a href="#贪心算法两例" class="headerlink" title="贪心算法两例"></a>贪心算法两例</h3><p>1.会议安排问题（一）</p>
 <p>问题描述：有n个会议集合 A={1,2,3…n},这些会议都使用的是同一个会议室且在同一时间内最多只有一个会议可以使用该会议室，所以需要根据所有会议举办的时间进行协商。目标是尽可能选择更多的会议来使用资源。</p>
 <p>给出每一个会议所占用的时间段，表示形式为 $[b_i,e_i)$ , 其中$b_i,e_i$是int型的整数来代表时间。</p>
 <p>算法设计，包括策略与数据结构的选择,目前可以选择的贪心策略有：</p>
