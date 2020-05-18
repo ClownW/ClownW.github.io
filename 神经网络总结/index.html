@@ -45,8 +45,18 @@
 <meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E5%B1%9E%E6%80%A7%E7%9A%84%E5%9F%BA%E5%B0%BC%E6%8C%87%E6%95%B0.png">
 <meta property="og:image" content="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/RPN.png">
 <meta property="og:image" content="http://clownw.github.io/images/attention.png">
+<meta property="og:image" content="http://clownw.github.io/images/%E7%8A%B6%E6%80%81%E8%BD%AC%E5%8C%96%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="http://clownw.github.io/images/%E7%AD%96%E7%95%A5%CF%80.png">
+<meta property="og:image" content="http://clownw.github.io/images/%E4%BB%B7%E5%80%BC%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://clownw.github.io/images/contrast_loss.png">
+<meta property="og:image" content="http://clownw.github.io/images/triplet_loss.png">
+<meta property="og:image" content="http://clownw.github.io/images/triplet.png">
+<meta property="og:image" content="http://clownw.github.io/images/center_loss.png">
+<meta property="og:image" content="http://clownw.github.io/images/center.png">
+<meta property="og:image" content="http://clownw.github.io/images/focal_loss.png">
+<meta property="og:image" content="http://clownw.github.io/images/seperable_conv.png">
 <meta property="article:published_time" content="2020-03-26T14:48:55.000Z">
-<meta property="article:modified_time" content="2020-05-16T03:22:44.161Z">
+<meta property="article:modified_time" content="2020-05-18T14:27:52.249Z">
 <meta property="article:author" content="ClownW">
 <meta property="article:tag" content="神经网络">
 <meta name="twitter:card" content="summary">
@@ -68,7 +78,7 @@
 
   
     <meta property="article:published_time" content="Thu Mar 26 2020 22:48:55 GMT+0800">
-    <meta property="article:modified_time" content="Sat May 16 2020 11:22:44 GMT+0800">
+    <meta property="article:modified_time" content="Mon May 18 2020 22:27:52 GMT+0800">
   
 
   
@@ -193,7 +203,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-8.png" style="max-height: 240px;">
+      <img src="/images/random/material-1.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">神经网络总结</div>
@@ -391,7 +401,6 @@
 <p><strong>现在已经得到了在一个确定的IoU_threshold和一个确定的p_threshold下的precision和recall。</strong></p>
 <p>为了得到P-R曲线，首先对预测结果按照置信度排序，给定一个rank，每个rank对应了一个p_threshold，就可以计算出不同p_threshold下的precision和recall，取这些recall下<strong>precision</strong>的平均值就作为AP。</p>
 <p>将不同类别目标的AP取平均就得到了mAP。</p>
-<p>作者：zhwhong<br>链接：<a href="https://www.jianshu.com/p/c61ae11cc5f6" target="_blank" rel="noopener">https://www.jianshu.com/p/c61ae11cc5f6</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <h3 id="14-决策树"><a href="#14-决策树" class="headerlink" title="14.决策树"></a>14.决策树</h3><h4 id="ID3和C4-5决策树算法。"><a href="#ID3和C4-5决策树算法。" class="headerlink" title="ID3和C4.5决策树算法。"></a>ID3和C4.5决策树算法。</h4><p>不同的算法有不同的依据来划分节点。ID3根据信息增益来划分节点，而C4.5根据信息增益率来划分节点。</p>
 <p>信息熵定义：</p>
 <p><img src="%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/%E4%BF%A1%E6%81%AF%E7%86%B5.png" alt=""></p>
@@ -440,7 +449,66 @@
 <p><img src="../images/attention.png" alt=""></p>
 <p>​        如图是encoder-decoder机制，要计算Hi时，利用Hi-1与encoder的各个部分输出来计算相似度（可以利用神经网络来算），最后经过softmax归一化后得到attention，这里的相似度计算就是衡量应该更加注重哪个部分。</p>
 <h3 id="17-强化学习中的马尔卡夫决策过程"><a href="#17-强化学习中的马尔卡夫决策过程" class="headerlink" title="17.强化学习中的马尔卡夫决策过程"></a>17.强化学习中的马尔卡夫决策过程</h3><p>马尔科夫假设：假设下一个状态相关的决策仅与上一个状态有关，而与之前的无关。</p>
-<h3 id="18-强化学习中的reward如何设计？"><a href="#18-强化学习中的reward如何设计？" class="headerlink" title="18.强化学习中的reward如何设计？"></a>18.强化学习中的reward如何设计？</h3><h3 id="19-强化学习中的policy如何设计？"><a href="#19-强化学习中的policy如何设计？" class="headerlink" title="19.强化学习中的policy如何设计？"></a>19.强化学习中的policy如何设计？</h3>
+<p>环境的状态转化模型：在状态s下采取动作a转移到下一个状态s‘的概率，用$P_{ss’}^{a}$来表示，利用马尔科夫假设，</p>
+<p><img src="../images/%E7%8A%B6%E6%80%81%E8%BD%AC%E5%8C%96%E6%A8%A1%E5%9E%8B.png" alt=""></p>
+<p>策略π：</p>
+<p><img src="../images/%E7%AD%96%E7%95%A5%CF%80.png" alt=""></p>
+<p>价值函数$v_π(s)$，也依据马尔科夫假设：</p>
+<p><img src="../images/%E4%BB%B7%E5%80%BC%E5%87%BD%E6%95%B0.png" alt=""></p>
+<p>其中，Gt代表收获（return), 是一个MDP中从某一个状态StSt开始采样直到终止状态时所有奖励的有衰减的之和。</p>
+<h3 id="18-强化学习中的reward如何设计？"><a href="#18-强化学习中的reward如何设计？" class="headerlink" title="18.强化学习中的reward如何设计？"></a>18.强化学习中的reward如何设计？</h3><h3 id="19-强化学习中的policy如何设计？"><a href="#19-强化学习中的policy如何设计？" class="headerlink" title="19.强化学习中的policy如何设计？"></a>19.强化学习中的policy如何设计？</h3><h3 id="20-人脸识别中的loss"><a href="#20-人脸识别中的loss" class="headerlink" title="20.人脸识别中的loss"></a>20.人脸识别中的loss</h3><p>直接使用softmax对应的cross-entropy存在的问题：</p>
+<p>1.Softmax训练的深度特征，会把整个超空间或者超球，按照分类个数进行划分，保证类别是<strong>可分的</strong>。 这一点对多分类任务如MNIST和ImageNet非常合适，因为测试类别必定在训练类别中</p>
+<p>2.但Softmax并<strong>不要求类内紧凑和类间分离</strong>，这一点非常不适合人脸识别任务，因为训练集的1W人数，    相对测试集整个世界70亿人类来说，非常微不足道，而我们不可能拿到所有人的训练样本，更过分的是，一般我们还要求训练集和测试集不重叠。</p>
+<p>3.<strong>所以需要改造Softmax，除了保证可分性外，还要做到特征向量类内尽可能紧凑，类间尽可能分离</strong>。</p>
+<p>改进的loss：</p>
+<ul>
+<li><p>Softmax + Contrastive Loss</p>
+<p><img src="../images/contrast_loss.png" alt=""></p>
+</li>
+</ul>
+<p>​        通过Contrastive loss来使同类特征的L2距离尽可能小，不同类特征的L2距离大于margin（间隔） m</p>
+<ul>
+<li><p>Triplet Loss</p>
+<p>训练目标：</p>
+<p><img src="../images/triplet_loss.png" alt=""></p>
+</li>
+</ul>
+<p>​        找到若干三元组，一张作为anchor，positive与anchor为同一个人，negative为随机的不同人脸。训练目标是使anchor与positive的距离在学习之后变小，anchor与negative的距离在学习之后变大。</p>
+<p>​        Triplet Loss:</p>
+<p><img src="../images/triplet.png" alt=""></p>
+<ul>
+<li><p>Center Loss</p>
+<p><img src="../images/center_loss.png" alt=""></p>
+</li>
+</ul>
+<p>​        对每个类学习一个中心，并将每个类别的所有特征向量拉向对应类别中心。</p>
+<p>​        学习效果：</p>
+<p><img src="../images/center.png" alt=""></p>
+<p>​        将原本不好分开的类别拉开。</p>
+<p>​        各种改进的loss虽然很多，但主要思想都是<strong>增大类间距离，减小类内聚类。</strong></p>
+<ul>
+<li><p>focal loss(实际使用的，face.evolve中用的loss)</p>
+<p>人脸识别存在的问题：<strong>负样本数量太大，占总的loss的大部分，而且多是容易分类的，因此使得模型的优化方向并不是我们所希望的那样</strong></p>
+<p><strong>因此针对类别不均衡问题，作者提出一种新的损失函数：focal loss，这个损失函数是在标准交叉熵损失基础上修改得到的。这个函数可以通过减少易分类样本的权重，使得模型在训练时更专注于难分类的样本。</strong></p>
+<p><img src="../images/focal_loss.png" alt=""></p>
+</li>
+</ul>
+<p>​        其中，$α_t$为正负样本权重调制系数，当为正样本时，$α_t=a$，当为负样本时，$α_t=1-a$，因此通过调整a的值，可以调整正负样本在loss中占的权重。比如当正样本很多，可以取a为0-0.5之间的数，减少正样本对loss的贡献。</p>
+<p>​        而$p_t$为预测值，如果$p_t$为0.9，表明这个样本为正样本的置信度很高，是容易分类样本；如果$p_t$为0.6，表明这个样本可能是正样本，但置信度不高，为难分类样本，通过在log前面加上$1-p_t$可以调整难分类样本对loss的贡献。</p>
+<h3 id="21-yolo细节"><a href="#21-yolo细节" class="headerlink" title="21.yolo细节"></a>21.yolo细节</h3><p>画出结构？</p>
+<h3 id="22-iou代码"><a href="#22-iou代码" class="headerlink" title="22.iou代码"></a>22.iou代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">iou</span><span class="params">(p1,p2,p3,p4)</span>:</span></span><br><span class="line">	left_boundry = max(p1[<span class="number">0</span>], p3[<span class="number">0</span>])</span><br><span class="line">	right_boundry = min(p2[<span class="number">0</span>],p4[<span class="number">0</span>])</span><br><span class="line">	<span class="comment"># 这里定义y轴正方向竖直向下</span></span><br><span class="line">	top_boundry = max(p1[<span class="number">1</span>], p3[<span class="number">1</span>])</span><br><span class="line">	bottom_boundry = min(p2[<span class="number">1</span>], p4[<span class="number">1</span>])</span><br><span class="line">	s1 = abs(p1[<span class="number">0</span>]-p2[<span class="number">0</span>])*abs(p1[<span class="number">1</span>]-p2[<span class="number">1</span>])</span><br><span class="line">	s2 = abs(p3[<span class="number">0</span>]-p4[<span class="number">0</span>])*abs(p3[<span class="number">1</span>]-p4[<span class="number">1</span>])</span><br><span class="line">	union = (bottom_boundry-top_boundry)*(right_boundry-left_boundry)</span><br><span class="line">	<span class="keyword">return</span> max(union/(s1+s2-union), <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="23-深度可分离卷积"><a href="#23-深度可分离卷积" class="headerlink" title="23.深度可分离卷积"></a>23.深度可分离卷积</h3><p>怎么做？是否会带来性能损失？</p>
+<p><img src="../images/seperable_conv.png" alt=""></p>
+<p>根据inception net改进的结构， 将基本inception module替换为使用Depthwise Conv + Pointwise Conv ，进一步提升了计算效率。</p>
+<ul>
+<li>1x1卷积，Pointwise Conv，用来学习不同channel之间的关联关系</li>
+<li>3x3卷积，spatial convolution，即Depthwise Conv，用来学习单个channel内部空间的关联关系</li>
+</ul>
+<p>这个结构由google提出，轻量级网络MobileNets即是基于这种结构。</p>
+<h3 id="24-DQN如何体现最大化reward"><a href="#24-DQN如何体现最大化reward" class="headerlink" title="24.DQN如何体现最大化reward?"></a>24.DQN如何体现最大化reward?</h3>
       <blockquote class="mdui-m-t-5">
         
         <strong>本文链接：</strong><a href="http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/">http://clownw.github.io/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/</a>
