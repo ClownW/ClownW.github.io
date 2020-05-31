@@ -8,25 +8,28 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>优先队列类 | ClownW的博客</title>
+  <title>图 | ClownW的博客</title>
 
   <link rel="shortcut icon" href="../images/favicon.png">
   <link rel="alternate" href="../atom.xml" title="ClownW的博客">
-  <meta name="description" content="使用优先队列来解题。 优先队列特点：队列的第一个元素总是整个队列中最小的（最小优先队列， python heapq里面内置的就是最小堆）。 778.Swim in Rising Water  一道非常经典的可以用优先队列巧妙解决的题。 题目大意：在t时刻，你可以到达grid[i] [j]&lt;t的点，经过的路径也要满足这个条件。 解题思路：用一个优先队列来保存所有可以到达的点（即已经探索过的点的">
+  <meta name="description" content="图1.用打表法解题     这是一道有向图题，判断[u,v]中u是否是v的前驱。用DFS会导致超时，直接用打表法。 123456789101112131415class Solution:    def checkIfPrerequisite(self, n: int, prerequisites: List[List[int]], queries: List[List[int]]) -&gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="优先队列类">
-<meta property="og:url" content="http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/">
+<meta property="og:title" content="图">
+<meta property="og:url" content="http://clownw.github.io/%E5%9B%BE/">
 <meta property="og:site_name" content="ClownW的博客">
-<meta property="og:description" content="使用优先队列来解题。 优先队列特点：队列的第一个元素总是整个队列中最小的（最小优先队列， python heapq里面内置的就是最小堆）。 778.Swim in Rising Water  一道非常经典的可以用优先队列巧妙解决的题。 题目大意：在t时刻，你可以到达grid[i] [j]&lt;t的点，经过的路径也要满足这个条件。 解题思路：用一个优先队列来保存所有可以到达的点（即已经探索过的点的">
+<meta property="og:description" content="图1.用打表法解题     这是一道有向图题，判断[u,v]中u是否是v的前驱。用DFS会导致超时，直接用打表法。 123456789101112131415class Solution:    def checkIfPrerequisite(self, n: int, prerequisites: List[List[int]], queries: List[List[int]]) -&gt;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/desp778_1.png">
-<meta property="og:image" content="http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/desp778_2.png">
-<meta property="article:published_time" content="2020-04-08T14:56:48.000Z">
-<meta property="article:modified_time" content="2020-04-08T15:06:33.897Z">
+<meta property="og:image" content="http://clownw.github.io/images/%E6%89%93%E8%A1%A8%E6%B3%951.png">
+<meta property="og:image" content="http://clownw.github.io/images/%E6%89%93%E8%A1%A8%E6%B3%952.png">
+<meta property="og:image" content="http://clownw.github.io/images/%E6%89%93%E8%A1%A8%E6%B3%953.png">
+<meta property="og:image" content="http://clownw.github.io/images/%E6%89%93%E8%A1%A8%E6%B3%954.png">
+<meta property="og:image" content="http://clownw.github.io/images/%E6%89%93%E8%A1%A8%E6%B3%955.png">
+<meta property="article:published_time" content="2020-05-31T07:34:43.000Z">
+<meta property="article:modified_time" content="2020-05-31T08:00:47.436Z">
 <meta property="article:author" content="ClownW">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/desp778_1.png">
+<meta name="twitter:image" content="http://clownw.github.io/images/%E6%89%93%E8%A1%A8%E6%B3%951.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
@@ -43,8 +46,8 @@
   <link rel="apple-touch-icon" href="../images/favicon.png">
 
   
-    <meta property="article:published_time" content="Wed Apr 08 2020 22:56:48 GMT+0800">
-    <meta property="article:modified_time" content="Wed Apr 08 2020 23:06:33 GMT+0800">
+    <meta property="article:published_time" content="Sun May 31 2020 15:34:43 GMT+0800">
+    <meta property="article:modified_time" content="Sun May 31 2020 16:00:47 GMT+0800">
   
 
   
@@ -169,11 +172,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-16.png" style="max-height: 240px;">
+      <img src="/images/random/material-5.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">优先队列类</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-04-08 / <i class="iconfont">&#xe601;</i> ClownW</div>
+          <div class="mdui-card-primary-title">图</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-05-31 / <i class="iconfont">&#xe601;</i> ClownW</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -185,7 +188,7 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/">
+                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=http://clownw.github.io/%E5%9B%BE/">
               
             </li>
           </ul>
@@ -194,43 +197,43 @@
           <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
           <ul class="mdui-menu" id="share_menu">
             <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=优先队列类&url=http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/&pic=http://clownw.github.io../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=图&url=http://clownw.github.io/%E5%9B%BE/&pic=http://clownw.github.io../images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=优先队列类&url=http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/&via=ClownW" target="_blank" class="mdui-ripple">分享到Twitter</a>
+              <a href="https://twitter.com/intent/tweet?text=图&url=http://clownw.github.io/%E5%9B%BE/&via=ClownW" target="_blank" class="mdui-ripple">分享到Twitter</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/" target="_blank" class="mdui-ripple">分享到Facebook</a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://clownw.github.io/%E5%9B%BE/" target="_blank" class="mdui-ripple">分享到Facebook</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/" target="_blank" class="mdui-ripple">分享到Google+</a>
+              <a href="https://plus.google.com/share?url=http://clownw.github.io/%E5%9B%BE/" target="_blank" class="mdui-ripple">分享到Google+</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/&title=优先队列类" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://clownw.github.io/%E5%9B%BE/&title=图" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=ClownW的博客&title=优先队列类&summary=&pics=http://clownw.github.io../images/favicon.png&url=http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/" target="_blank" class="mdui-ripple">分享到QQ</a>
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=ClownW的博客&title=图&summary=&pics=http://clownw.github.io../images/favicon.png&url=http://clownw.github.io/%E5%9B%BE/" target="_blank" class="mdui-ripple">分享到QQ</a>
             </li>
             <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/&text=优先队列类" target="_blank" class="mdui-ripple">分享到Telegram</a>
+              <a href="https://telegram.me/share/url?url=http://clownw.github.io/%E5%9B%BE/&text=图" target="_blank" class="mdui-ripple">分享到Telegram</a>
             </li>
           </ul>
         
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <p>使用优先队列来解题。</p>
-<p>优先队列特点：队列的第一个元素总是整个队列中最小的（最小优先队列， python heapq里面内置的就是最小堆）。</p>
-<h3 id="778-Swim-in-Rising-Water"><a href="#778-Swim-in-Rising-Water" class="headerlink" title="778.Swim in Rising Water"></a>778.Swim in Rising Water</h3><p><img src="desp778_1.png" alt=""></p>
-<p><img src="desp778_2.png" alt=""></p>
-<p>一道非常经典的可以用优先队列巧妙解决的题。</p>
-<p>题目大意：在t时刻，你可以到达grid[i] [j]&lt;t的点，经过的路径也要满足这个条件。</p>
-<p>解题思路：用一个优先队列来保存所有可以到达的点（即已经探索过的点的所有邻居），每次弹出最小的元素，即在最小的t可以到达的点，不断这样往深处搜索下去。</p>
-<p>代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swimInWater</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">    N, pq, seen, res = len(grid), [(grid[<span class="number">0</span>][<span class="number">0</span>], <span class="number">0</span>, <span class="number">0</span>)], set([(<span class="number">0</span>, <span class="number">0</span>)]), <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        T, x, y = heapq.heappop(pq)</span><br><span class="line">        res = max(res, T)</span><br><span class="line">        <span class="keyword">if</span> x == y == N - <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> [(x + <span class="number">1</span>, y), (x, y + <span class="number">1</span>), (x - <span class="number">1</span>, y), (x, y - <span class="number">1</span>)]:</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt;= i &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= j &lt; N <span class="keyword">and</span> (i, j) <span class="keyword">not</span> <span class="keyword">in</span> seen:</span><br><span class="line">                seen.add((i, j))</span><br><span class="line">                heapq.heappush(pq, (grid[i][j], i, j))</span><br></pre></td></tr></table></figure>
+      <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h3 id="1-用打表法解题"><a href="#1-用打表法解题" class="headerlink" title="1.用打表法解题"></a>1.用打表法解题</h3><p><img src="../images/%E6%89%93%E8%A1%A8%E6%B3%951.png" alt=""></p>
+<p><img src="../images/%E6%89%93%E8%A1%A8%E6%B3%952.png" alt=""></p>
+<p><img src="../images/%E6%89%93%E8%A1%A8%E6%B3%953.png" alt=""></p>
+<p><img src="../images/%E6%89%93%E8%A1%A8%E6%B3%954.png" alt=""></p>
+<p><img src="../images/%E6%89%93%E8%A1%A8%E6%B3%955.png" alt=""></p>
+<p>这是一道有向图题，判断[u,v]中u是否是v的前驱。用DFS会导致超时，直接用打表法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">checkIfPrerequisite</span><span class="params">(self, n: int, prerequisites: List[List[int]], queries: List[List[int]])</span> -&gt; List[bool]:</span></span><br><span class="line">        dp = [[<span class="literal">False</span>] * n <span class="keyword">for</span> _ <span class="keyword">in</span> range(n)]       </span><br><span class="line">        <span class="keyword">for</span> p, c <span class="keyword">in</span> prerequisites:</span><br><span class="line">            dp[p][c] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n): <span class="comment"># 对每个点i</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(n): <span class="comment"># 找到i的前驱</span></span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(n): <span class="comment"># 找到i的后继</span></span><br><span class="line">                    <span class="keyword">if</span> dp[j][i] <span class="keyword">and</span> dp[i][k]:</span><br><span class="line">                        dp[j][k] = <span class="literal">True</span> <span class="comment"># i的前驱也是i的后继的前驱</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> queries:</span><br><span class="line">            ans.append(dp[i][j])</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+
       <blockquote class="mdui-m-t-5">
         
-        <strong>本文链接：</strong><a href="http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/">http://clownw.github.io/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%B1%BB/</a>
+        <strong>本文链接：</strong><a href="http://clownw.github.io/%E5%9B%BE/">http://clownw.github.io/%E5%9B%BE/</a>
       </blockquote>
       
     </div>
@@ -251,14 +254,9 @@
 
   <nav id="paginator">
     
-      <a rel="prev" class="extend prev" href="../%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA/">
-        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
-      </a>
-    
     <div class="spacer"></div>
     
-      <a rel="next" class="extend next" href="../%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+      <a rel="next" class="extend next" href="../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9/">
         下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
       </a>
