@@ -58,8 +58,39 @@
 <meta property="og:image" content="http://clownw.github.io/images/Q-learning.png">
 <meta property="og:image" content="http://clownw.github.io/images/Q-learning%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.png">
 <meta property="og:image" content="http://clownw.github.io/images/DQN%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://clownw.github.io/images/transformer1.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/encoder-decoder%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://clownw.github.io/images/encoder-decoder%E7%BB%93%E6%9E%842.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/encoder.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/self-attention.png">
+<meta property="og:image" content="http://clownw.github.io/images/FFN.png">
+<meta property="og:image" content="http://clownw.github.io/images/decoder.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/%E8%BE%93%E5%85%A5.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/self-attention1.jpg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=q">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=v">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Ctext%7Bscore%7D+%253D+q+%5Ccdot+k">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csqrt%7Bd_k%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=v">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=v">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=z">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=z%253D%5Csum+v">
+<meta property="og:image" content="http://clownw.github.io/images/self-attention2.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/self-attention%E7%9F%A9%E9%98%B5.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/self-attention%E7%9F%A9%E9%98%B51.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/encoder%E6%AE%8B%E5%B7%AE.jpg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=h">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=h%253D8">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=X+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=Z_i%252C+i%5Cin%5C%7B1%252C2%252C...%252C8%5C%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=Z_i">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=Z">
+<meta property="og:image" content="http://clownw.github.io/images/multi-head.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/transformer%E5%AE%8C%E6%95%B4%E7%BB%93%E6%9E%84.jpg">
+<meta property="og:image" content="http://clownw.github.io/images/%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.jpg">
 <meta property="article:published_time" content="2020-03-26T14:48:55.000Z">
-<meta property="article:modified_time" content="2020-05-30T08:08:58.167Z">
+<meta property="article:modified_time" content="2020-06-01T13:32:43.449Z">
 <meta property="article:author" content="ClownW">
 <meta property="article:tag" content="神经网络">
 <meta name="twitter:card" content="summary">
@@ -81,7 +112,7 @@
 
   
     <meta property="article:published_time" content="Thu Mar 26 2020 22:48:55 GMT+0800">
-    <meta property="article:modified_time" content="Sat May 30 2020 16:08:58 GMT+0800">
+    <meta property="article:modified_time" content="Mon Jun 01 2020 21:32:43 GMT+0800">
   
 
   
@@ -206,7 +237,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-16.png" style="max-height: 240px;">
+      <img src="/images/random/material-17.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">神经网络总结</div>
@@ -530,7 +561,56 @@
 <p>说回DQN：</p>
 <p><img src="../images/DQN%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.png" alt=""></p>
 <p>​        DQN是为了解决Q表过大的问题，用神经网络来代替Q表。用Q-learning的思路来说，就是通过最小化$Q_{现实}-Q_{估计}$来迭代出最优的policy。和policy gradient这种通过最大化奖励的方式来得到最优policy的方式有所区别。</p>
-<h3 id="25-Transformer结构"><a href="#25-Transformer结构" class="headerlink" title="25.Transformer结构"></a>25.Transformer结构</h3><p>参考文献：</p>
+<h3 id="25-Transformer结构"><a href="#25-Transformer结构" class="headerlink" title="25.Transformer结构"></a>25.Transformer结构</h3><p>可参考知乎文章“<a href="https://zhuanlan.zhihu.com/p/48508221" target="_blank" rel="noopener">《详解Transformer （Attention Is All You Need）》</a>“</p>
+<p>​        Transformer中抛弃了传统的CNN和RNN，整个网络结构完全是由Attention机制组成。更准确地讲, Transformer由且仅由self-Attenion和Feed Forward Neural Network组成。一个基于Transformer的可训练的神经网络可以通过堆叠Transformer的形式进行搭建，作者的实验是通过搭建编码器和解码器各6层，总共12层的Encoder-Decoder，并在机器翻译中取得了BLEU值得新高。</p>
+<p>​        看了淘宝和美团将transformer结构用于推荐系统的文章，发现都只采用了encoder部分，利用了transformer结构中内置的attention部分，来做特征的高阶组合、学习特征之间的交叉关系等。可以用在特征工程，行为序列建模，重排序，预测用户u点击item vt的概率等。</p>
+<p>transformer结构：</p>
+<p>1.整体结构</p>
+<p><img src="../images/transformer1.jpg" alt=""></p>
+<p>2.encoder-decoder结构</p>
+<p><img src="../images/encoder-decoder%E7%BB%93%E6%9E%84.png" alt=""></p>
+<p><img src="../images/encoder-decoder%E7%BB%93%E6%9E%842.jpg" alt=""></p>
+<p><img src="../images/encoder.jpg" alt=""></p>
+<p>可以看到，encode结构包括了一个self-attention和FFN。</p>
+<p>其中：</p>
+<p><img src="../images/self-attention.png" alt=""></p>
+<p>有关Q，K，V见下方</p>
+<p><img src="../images/FFN.png" alt=""></p>
+<p>decoder结构：</p>
+<p><img src="../images/decoder.jpg" alt=""></p>
+<p>输入：</p>
+<p><img src="../images/%E8%BE%93%E5%85%A5.jpg" alt=""></p>
+<p>self-attention：</p>
+<p><img src="../images/self-attention1.jpg" alt=""></p>
+<ol>
+<li>如上文，将输入单词转化成嵌入向量；</li>
+<li>根据嵌入向量得到 <img src="https://www.zhihu.com/equation?tex=q" alt="[公式]"> ， <img src="https://www.zhihu.com/equation?tex=k" alt="[公式]"> ， <img src="https://www.zhihu.com/equation?tex=v" alt="[公式]"> 三个向量；</li>
+<li>为每个向量计算一个score： <img src="https://www.zhihu.com/equation?tex=%5Ctext%7Bscore%7D+%3D+q+%5Ccdot+k" alt="[公式]"> ；</li>
+<li>为了梯度的稳定，Transformer使用了score归一化，即除以 <img src="https://www.zhihu.com/equation?tex=%5Csqrt%7Bd_k%7D" alt="[公式]"> ；</li>
+<li>对score施以softmax激活函数；</li>
+<li>softmax点乘Value值 <img src="https://www.zhihu.com/equation?tex=v" alt="[公式]"> ，得到加权的每个输入向量的评分 <img src="https://www.zhihu.com/equation?tex=v" alt="[公式]"> ；</li>
+<li>相加之后得到最终的输出结果 <img src="https://www.zhihu.com/equation?tex=z" alt="[公式]"> ： <img src="https://www.zhihu.com/equation?tex=z%3D%5Csum+v" alt="[公式]"> 。</li>
+</ol>
+<p><img src="../images/self-attention2.jpg" alt=""></p>
+<p>矩阵：</p>
+<p><img src="../images/self-attention%E7%9F%A9%E9%98%B5.jpg" alt=""></p>
+<p>attention公式矩阵形式：</p>
+<p><img src="../images/self-attention%E7%9F%A9%E9%98%B51.jpg" alt=""></p>
+<p>encoder内部的残差结构：</p>
+<p><img src="../images/encoder%E6%AE%8B%E5%B7%AE.jpg" alt=""></p>
+<p>采用multi-head attention的形式：</p>
+<p>Multi-Head Attention相当于 <img src="https://www.zhihu.com/equation?tex=h" alt="[公式]"> 个不同的self-attention的集成（ensemble），在这里我们以 <img src="https://www.zhihu.com/equation?tex=h%3D8" alt="[公式]"> 举例说明。Multi-Head Attention的输出分成3步：</p>
+<ol>
+<li>将数据 <img src="https://www.zhihu.com/equation?tex=X+" alt="[公式]"> 分别输入到图13所示的8个self-attention中，得到8个加权后的特征矩阵 <img src="https://www.zhihu.com/equation?tex=Z_i%2C+i%5Cin%5C%7B1%2C2%2C...%2C8%5C%7D" alt="[公式]"> 。</li>
+<li>将8个 <img src="https://www.zhihu.com/equation?tex=Z_i" alt="[公式]"> 按列拼成一个大的特征矩阵；</li>
+<li>特征矩阵经过一层全连接后得到输出 <img src="https://www.zhihu.com/equation?tex=Z" alt="[公式]"> 。</li>
+</ol>
+<p><img src="../images/multi-head.jpg" alt=""></p>
+<p>完整结构：</p>
+<p><img src="../images/transformer%E5%AE%8C%E6%95%B4%E7%BB%93%E6%9E%84.jpg" alt=""></p>
+<p>在谷歌论文中，由于transformer结构没有捕捉顺序结构的能力，因此还引入了位置编码：</p>
+<p><img src="../images/%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.jpg" alt=""></p>
+<p>参考文献：</p>
 <ol>
 <li>吴恩达 deeplearning 课程</li>
 <li>@zhwhong,  “<a href="https://www.jianshu.com/p/c61ae11cc5f6" target="_blank" rel="noopener">机器学习之分类性能度量指标 : ROC曲线、AUC值、正确率、召回率</a>“</li>
